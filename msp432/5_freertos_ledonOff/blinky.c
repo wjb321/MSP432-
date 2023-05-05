@@ -107,7 +107,7 @@ static void LED1Task( void *pvParameters )
 
 static void LED2Task( void *pvParameters )
 {
-  static const TickType_t xShortBlock = pdMS_TO_TICKS( 50 );
+  static const TickType_t xShortBlock = pdMS_TO_TICKS( 500 );
 
   /* Check the task parameter is as expected. */
   configASSERT( ( ( unsigned long ) pvParameters ) == LED2_PARAMETER );
