@@ -1,0 +1,86 @@
+#include <ti/devices/msp432e4/driverlib/driverlib.h>
+
+/* Standard Includes */
+#include <stdint.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include "pinout.h"
+#include "msp432e401y.h"
+#include <rthw.h>
+#include <rtthread.h>
+#include "ti/devices/msp432e4/driverlib/driverlib.h"
+#include "uartstdio.h"
+//#include "driverlib.h"
+uint32_t getSystemClock;
+uint32_t duty_cycle = 0;
+uint32_t increment = 100;
+
+
+static rt_thread_t led1_thread = RT_NULL;
+static rt_thread_t led2_thread = RT_NULL;
+/* ???? */
+static void led1_thread_entry(void* parameter); //?? led1 ??
+static void led2_thread_entry(void* parameter); //?? led2 ??
+static rt_mutex_t mutex = RT_NULL;
+int a=-10,b=-10;
+/**********main ??**********/
+int main(void)
+{
+/* ??а???? */
+mutex = rt_mutex_create("mutex",RT_IPC_FLAG_PRIO);
+if (mutex != RT_NULL) rt_kprintf("???????? \n\n");
+/*???? 1*/
+led1_thread = /* ??????? */
+rt_thread_create( "led1", /* ???? */
+led1_thread_entry, /* ?????? */
+RT_NULL, /* ???????? */
+512, /* ????? */
+3, /* ?????? */
+20); /* ????? */
+if (led1_thread != RT_NULL)
+rt_thread_startup(led1_thread);
+else
+return -1;
+/*???? 2*/
+led2_thread = /* ??????? */
+书稿样章，禁止外
+传！
+2023.5.6
+rt_thread_create( "led2", /* ???? */
+led2_thread_entry, /* ?????? */
+RT_NULL, /* ???? ???? */
+512, /* ????? */
+4, /* ?????? */
+20); /* ????? */
+/* ????? ???? */
+if (led2_thread != RT_NULL)
+rt_thread_startup(led2_thread);
+else
+return -1;
+}
+/*********?? 1**********/
+static void led1_thread_entry(void* parameter)
+{
+for(;;)
+{
+rt_mutex_take(mutex, /* ????? */
+RT_WAITING_FOREVER); /* ????? а?? */
+a+=10;
+rt_thread_delay ( 100 ); /* ?? 100ms */
+b+=10;
+rt_mutex_release(mutex); //??????
+rt_thread_yield(); //???????? ??а?????
+}
+}
+/*********?? 2**********/
+static void led2_thread_entry(void* parameter)
+{
+for(;;)
+{
+rt_mutex_take(mutex, /* ????? */
+RT_WAITING_FOREVER); /* ????? а?? */
+rt_kprintf ( "a=%d,b=%d\n",a,b );
+rt_mutex_release(mutex); //??????
+rt_thread_delay ( 400 ); //? 1s ?а?
+}
+}

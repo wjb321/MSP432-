@@ -1,4 +1,3 @@
-#include <ti/devices/msp432e4/driverlib/driverlib.h>
 
 /* Standard Includes */
 #include <stdint.h>
@@ -8,8 +7,8 @@
 #include "msp432e401y.h"
 #include <rthw.h>
 #include <rtthread.h>
-#include "ti/devices/msp432e4/driverlib/driverlib.h"
 #include "uartstdio.h"
+#include <ti/devices/msp432e4/driverlib/driverlib.h>
 //#include "driverlib.h"
 uint32_t getSystemClock;
 uint32_t duty_cycle = 0;
