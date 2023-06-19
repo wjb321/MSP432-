@@ -18,6 +18,7 @@ int main(void)
 {
   uint32_t duty_cycle = 0;
   uint32_t increment = 100;
+	ROM_GPIOPinTypeGPIOInput(GPIO_PORTE_BASE, GPIO_PIN_4);
   getSystemClock = MAP_SysCtlClockFreqSet((SYSCTL_OSC_INT | SYSCTL_USE_OSC), 16000000);
 	
   MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM0);
@@ -64,6 +65,10 @@ int main(void)
         }
       MAP_PWMPulseWidthSet(PWM0_BASE, PWM_OUT_0, duty_cycle);
       MAP_PWMPulseWidthSet(PWM0_BASE, PWM_OUT_1, duty_cycle);
+			//			if(GPIOPinRead(GPIO_PORTE_BASE, GPIO_PIN_4)== 1)
+			{
+				//printf ( "there is no water\n");
+			}	
       MAP_SysCtlDelay(10000);
     }
 }

@@ -1,0 +1,16 @@
+.\objects\kitronix320x240x16_ssd2119_spi.o: ..\LcdDriver\kitronix320x240x16_ssd2119_spi.c
+.\objects\kitronix320x240x16_ssd2119_spi.o: C:\Users\hoshiraku\AppData\Local\Arm\Packs\TexasInstruments\MSP432E4_DFP\3.2.6\Device\Include\msp432.h
+.\objects\kitronix320x240x16_ssd2119_spi.o: C:\Users\hoshiraku\AppData\Local\Arm\Packs\TexasInstruments\MSP432E4_DFP\3.2.6\Device\Include\msp432e401y.h
+.\objects\kitronix320x240x16_ssd2119_spi.o: C:\ti\simplelink_msp432e4_sdk_4_20_00_12\source\third_party\CMSIS\Include\core_cm4.h
+.\objects\kitronix320x240x16_ssd2119_spi.o: F:\keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\kitronix320x240x16_ssd2119_spi.o: C:\ti\simplelink_msp432e4_sdk_4_20_00_12\source\third_party\CMSIS\Include\cmsis_version.h
+.\objects\kitronix320x240x16_ssd2119_spi.o: C:\ti\simplelink_msp432e4_sdk_4_20_00_12\source\third_party\CMSIS\Include\cmsis_compiler.h
+.\objects\kitronix320x240x16_ssd2119_spi.o: C:\ti\simplelink_msp432e4_sdk_4_20_00_12\source\third_party\CMSIS\Include\cmsis_armcc.h
+.\objects\kitronix320x240x16_ssd2119_spi.o: C:\ti\simplelink_msp432e4_sdk_4_20_00_12\source\third_party\CMSIS\Include\mpu_armv7.h
+.\objects\kitronix320x240x16_ssd2119_spi.o: C:\Users\hoshiraku\AppData\Local\Arm\Packs\TexasInstruments\MSP432E4_DFP\3.2.6\Device\Include\system_msp432e401y.h
+.\objects\kitronix320x240x16_ssd2119_spi.o: ..\src\grlib\grlib.h
+.\objects\kitronix320x240x16_ssd2119_spi.o: F:\keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\kitronix320x240x16_ssd2119_spi.o: F:\keil\ARM\ARMCC\Bin\..\include\assert.h
+.\objects\kitronix320x240x16_ssd2119_spi.o: ..\LcdDriver\HAL_MSP_EXP432P401R_KITRONIX320X240_SSD2119_SPI.h
+.\objects\kitronix320x240x16_ssd2119_spi.o: ..\LcdDriver\kitronix320x240x16_ssd2119_spi.h
+.\objects\kitronix320x240x16_ssd2119_spi.o: ..\src\grlib\grlib.h

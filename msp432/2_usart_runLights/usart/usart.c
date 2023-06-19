@@ -1,6 +1,7 @@
 #include "usart.h"
 #include <stdint.h>
 #include <stdbool.h>
+#include "uartstdio.h"
 #include "ti/devices/msp432e4/driverlib/driverlib.h"
 
 uint32_t g_ui32SysClock;

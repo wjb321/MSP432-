@@ -148,6 +148,7 @@ PinoutSet(bool bEthernet, bool bUSB)
     //
     ROM_GPIOPinTypeGPIOInput(GPIO_PORTJ_BASE, GPIO_PIN_0 | GPIO_PIN_1);
     ROM_GPIOPinWrite(GPIO_PORTJ_BASE, GPIO_PIN_0 | GPIO_PIN_1, 0);
+		
 
     //
     // PN0 and PN1 are used for USER LEDs.

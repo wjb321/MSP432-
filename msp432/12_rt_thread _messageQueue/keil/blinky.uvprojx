@@ -407,13 +407,6 @@
         </Group>
         <Group>
           <GroupName>DHT11</GroupName>
-          <Files>
-            <File>
-              <FileName>SimpleDHT.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\DHT11\SimpleDHT.cpp</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>Library</GroupName>

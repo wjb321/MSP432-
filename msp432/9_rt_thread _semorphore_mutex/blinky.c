@@ -12,6 +12,7 @@
 #include "uartstdio.h"
 //#include "driverlib.h"
 
+
 uint32_t getSystemClock;
 uint32_t duty_cycle = 0;
 uint32_t increment = 100;
@@ -27,9 +28,17 @@ int a=-10,b=-10;
 //here are some infomations:
 //the time slice allocated for each thread, and the delay time
 //mutex, the task 2 takes another's value and use
+
+//typedef struct{
+//	uint32_t prot;
+//	uint8_t pin;
+//}waterSensor;
+
+//waterSensor waterSensor1 = {GPIO_PORTE_BASE, GPIO_PIN_4};
+
 int main(void)
 {
-	
+	ROM_GPIOPinTypeGPIOInput(GPIO_PORTE_BASE, GPIO_PIN_4);
   mutex = rt_mutex_create("mutex",RT_IPC_FLAG_PRIO);
   if (mutex != RT_NULL) rt_kprintf("mutex created\n\n");
   led1_thread = 
@@ -51,7 +60,7 @@ int main(void)
                       RT_NULL,
                       512,
                       4, 
-                      5); 
+                      20); 
  
   if (led2_thread != RT_NULL)
     rt_thread_startup(led2_thread);
@@ -61,10 +70,10 @@ int main(void)
 
 static void led1_thread_entry(void* parameter)
 {
+
   for(;;)
     {
-      rt_mutex_take(mutex,
-                    RT_WAITING_FOREVER);
+      rt_mutex_take(mutex, RT_WAITING_FOREVER);
       a+=1;
       rt_thread_delay ( 20 );
       b+=10;
@@ -75,12 +84,23 @@ static void led1_thread_entry(void* parameter)
 
 //mutex part take values from led1 thread
 static void led2_thread_entry(void* parameter)
-{
+{ 
+//typedef struct{
+//	uint32_t prot;
+//	uint8_t pin;
+//}waterSensor;
+
+//waterSensor waterSensor1 = {GPIO_PORTE_BASE, GPIO_PIN_4};
+
   for(;;)
     {
       rt_mutex_take(mutex, 
                     RT_WAITING_FOREVER);
       rt_kprintf ( "a=%d,b=%d\n",a,b );
+//			if(GPIOPinRead(GPIO_PORTE_BASE, GPIO_PIN_4)== 1)
+//			{
+//				rt_kprintf ( "there is no water\n");
+//			}
       rt_mutex_release(mutex); 
       rt_thread_delay ( 10 ); 
     }
