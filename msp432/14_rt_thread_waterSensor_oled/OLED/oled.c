@@ -45,21 +45,21 @@
 #include "oled.h"
 #include "stdlib.h"
 #include "string.h" 	 
-//#include "delay.h"
+#include "delay.h"
 #include "iic.h"
 
 
-void delay_ms(unsigned int ms)
-{
-	unsigned int a;
-	while(ms)
-	{
-		a = 1800;
-		while(a--);
-		ms--;
-	}
-	return;
-}
+//void delay_ms(unsigned int ms)
+//{
+//	unsigned int a;
+//	while(ms)
+//	{
+//		a = 1800;
+//		while(a--);
+//		ms--;
+//	}
+//	return;
+//}
 //OLED显存总共分为8页
 //每页8行，一行128个像素点
 //OLED的显存

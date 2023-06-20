@@ -23,12 +23,12 @@ static int uart_init(uint32_t sysclockVal);
 static int uart1_init(uint32_t sysclockVal);
 void LED0_Blinky();
 
-static rt_thread_t led1_thread = RT_NULL;
-static rt_thread_t led2_thread = RT_NULL;
-static rt_thread_t led3_thread = RT_NULL;
-static void led1_thread_entry(void* parameter);
-static void led2_thread_entry(void* parameter);
-static void led3_thread_entry(void* parameter);
+static rt_thread_t water_thread = RT_NULL;
+static rt_thread_t oled_thread = RT_NULL;
+static rt_thread_t sd01_thread = RT_NULL;
+static void WaterSensor_thread_entry(void* parameter);
+static void OLED_thread_entry(void* parameter);
+static void sd01_thread_entry(void* parameter);
 
 
 
@@ -41,44 +41,44 @@ int main(void)
                                          SYSCTL_USE_PLL | SYSCTL_CFG_VCO_480),
                                      120000000);
 	//IIC_Start();
-  led1_thread = rt_thread_create( "led1",
-                                  led1_thread_entry,
+  water_thread = rt_thread_create( "water",
+                                  WaterSensor_thread_entry,
                                   RT_NULL,
                                   512,
                                   3,
                                   20);
-  if (led1_thread != RT_NULL)
-    rt_thread_startup(led1_thread);
+  if (water_thread != RT_NULL)
+    rt_thread_startup(water_thread);
   else
     return -1;
-//  led2_thread = rt_thread_create( "led2",
-//                                  led2_thread_entry,
-//                                  RT_NULL,
-//                                  512,
-//                                  4,
-//                                  15);
-
-//  if (led2_thread != RT_NULL)
-//    rt_thread_startup(led2_thread);
-//  else
-//    return -1;
-//	
-	led3_thread = rt_thread_create( "led3",
-                                  led3_thread_entry,
+  oled_thread = rt_thread_create( "oled",
+                                  OLED_thread_entry,
                                   RT_NULL,
                                   512,
-                                  5,
+                                  4,
                                   15);
 
-  if (led3_thread != RT_NULL)
-    rt_thread_startup(led3_thread);
+  if (oled_thread != RT_NULL)
+    rt_thread_startup(oled_thread);
   else
     return -1;
+	
+//	sd01_thread = rt_thread_create( "sd-01",
+//                                  sd01_thread_entry,
+//                                  RT_NULL,
+//                                  512,
+//                                  5,
+//                                  15);
+
+//  if (sd01_thread != RT_NULL)
+//    rt_thread_startup(sd01_thread);
+//  else
+//    return -1;
 }
 
 uint32_t getADCValue[1];
 uint32_t theWaterDept = 0;
-static void led1_thread_entry(void* parameter)
+static void WaterSensor_thread_entry(void* parameter)
 {  
 	  
     uint32_t systemClock;
@@ -167,7 +167,7 @@ static void led1_thread_entry(void* parameter)
 }
 
 
-static void led2_thread_entry(void* parameter)
+static void OLED_thread_entry(void* parameter)
 {
    uart_init(getSystemClock);
 	 PWM_configure();
@@ -207,7 +207,7 @@ static void led2_thread_entry(void* parameter)
 }
 
 
-static void led3_thread_entry(void* parameter)
+static void sd01_thread_entry(void* parameter)
 {
    uart1_init(getSystemClock);
 	 PWM_configure();

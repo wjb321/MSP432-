@@ -1,0 +1,43 @@
+#ifndef __LED_H__
+#define __LED_H__
+
+#include "ti/devices/msp432e4/driverlib/driverlib.h"
+
+#define GPIO_TOGGLE(port,pin)		GPIOPinWrite(port, pin, GPIOPinRead(port,pin)^pin)
+
+
+#define LED1_GPIO_PORT         GPIO_PORTN_BASE
+#define LED1_GPIO_PIN          GPIO_PIN_1
+
+#define LED2_GPIO_PORT         GPIO_PORTN_BASE
+#define LED2_GPIO_PIN          GPIO_PIN_0
+
+#define LED3_GPIO_PORT         GPIO_PORTF_BASE
+#define LED3_GPIO_PIN          GPIO_PIN_4
+
+#define LED4_GPIO_PORT         GPIO_PORTF_BASE
+#define LED4_GPIO_PIN          GPIO_PIN_0
+
+
+
+#define	LED1_ON		GPIOPinWrite(LED1_GPIO_PORT, LED1_GPIO_PIN, LED1_GPIO_PIN)
+#define	LED1_OFF	GPIOPinWrite(LED1_GPIO_PORT, LED1_GPIO_PIN, 0)
+#define	LED1_TOGGLE	GPIO_TOGGLE(LED1_GPIO_PORT, LED1_GPIO_PIN)
+
+#define	LED2_ON		GPIOPinWrite(LED2_GPIO_PORT, LED2_GPIO_PIN, LED2_GPIO_PIN)
+#define	LED2_OFF	GPIOPinWrite(LED2_GPIO_PORT, LED2_GPIO_PIN, 0)
+#define	LED2_TOGGLE	GPIO_TOGGLE(LED2_GPIO_PORT, LED2_GPIO_PIN)
+
+#define	LED3_ON		GPIOPinWrite(LED3_GPIO_PORT, LED3_GPIO_PIN, LED3_GPIO_PIN)
+#define	LED3_OFF	GPIOPinWrite(LED3_GPIO_PORT, LED3_GPIO_PIN, 0)
+#define	LED3_TOGGLE	GPIO_TOGGLE(LED3_GPIO_PORT, LED3_GPIO_PIN)
+
+#define	LED4_ON		GPIOPinWrite(LED4_GPIO_PORT, LED4_GPIO_PIN, LED4_GPIO_PIN)
+#define	LED4_OFF	GPIOPinWrite(LED4_GPIO_PORT, LED4_GPIO_PIN, 0)
+#define	LED4_TOGGLE	GPIO_TOGGLE(LED4_GPIO_PORT, LED4_GPIO_PIN)
+
+
+
+void led_init(void);
+
+#endif

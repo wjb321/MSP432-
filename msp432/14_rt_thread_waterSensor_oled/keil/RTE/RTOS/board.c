@@ -89,7 +89,7 @@ void rt_hw_board_init(void)
 }
 
 #ifdef RT_USING_CONSOLE
-uint32_t g_ui32SysClock;
+extern uint32_t g_ui32SysClock;
 static int uart_init(void)
 {
   MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);

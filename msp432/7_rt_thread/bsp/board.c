@@ -16,6 +16,7 @@
 #include "drv_sci.h"
 #include "drv_gpio.h"
 #include "F28x_Project.h"
+#include "delay.h"
 
 #ifndef RT_USING_SMP
 extern volatile rt_uint8_t rt_interrupt_nest;
