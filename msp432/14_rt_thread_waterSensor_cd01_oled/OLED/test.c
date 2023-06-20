@@ -292,6 +292,10 @@ void TEST_Menu1(void)
  * @retvalue   :None
 ******************************************************************************/
 extern uint32_t theWaterDept;
+uint32_t time_drop =0;//水滴,时间间隔,ms
+uint32_t count_drop =0 ;//水滴数
+double speed_drop = 0.0;//水滴速度,ml/min
+extern uint8_t warn_status;//警告标志,1警告,0正常
 void TEST_Menu2(void)
 {
 	u8 i;
@@ -309,10 +313,15 @@ void TEST_Menu2(void)
 	//GUI_ShowString(WIDTH/2-1+9,20,"32.5",16,1);
 	GUI_ShowString(WIDTH/2-1+2,39,"PM2.5",8,1);
 	GUI_ShowString(WIDTH/2-1+5,46,"90ug/m3",16,1);
-	GUI_DrawBMP(6,16,51,32, BMP5, 1);
+	//GUI_DrawBMP(6,16,51,32, BMP5, 1);
 	GUI_Fill(WIDTH/2-1+35,20,WIDTH/2-1+40,25,6);
 	for(i=0;i<15;i++)
 	{
+		GUI_ShowNum(WIDTH/2-1+35,20,theWaterDept,1,16,1);
+		OLED_printf(6, 16, "t= %5d ms", time_drop);//显示时间间隔
+		OLED_printf(6, 20, "s=%6.3f ml/min", speed_drop);//显示速度
+		OLED_printf(6, 24, "c = %4d", count_drop);//显示水滴计数
+		GUI_ShowNum(WIDTH/2-1+35,20,theWaterDept,1,16,1);
 		GUI_ShowNum(WIDTH/2-1+35,20,theWaterDept,1,16,1);
 		//GUI_ShowNum(WIDTH/2-1+9+8,20,rand()%10,1,16,1);
 		//GUI_ShowNum(WIDTH/2-1+9+8+16,20,rand()%10,1,16,1);

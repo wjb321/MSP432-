@@ -6,10 +6,10 @@
 //PM5 <--> SD01
 
 
-uint32_t time_drop = 0;//水滴,时间间隔,ms
-uint32_t count_drop = 0;//水滴数
+//uint32_t time_drop = 0;//水滴,时间间隔,ms
+//uint32_t count_drop = 0;//水滴数
 const float volume_drop = 0.045;//每滴水的体积,ml
-double speed_drop = 0.0;//水滴速度,ml/min
+//double speed_drop = 0.0;//水滴速度,ml/min
 uint8_t warn_status = 0;//警告标志,1警告,0正常
 
 void calculate_drop(uint32_t time);//根据时间间隔计算水滴速度
@@ -35,7 +35,6 @@ void GPIOM_IRQHandler(void)
 		if(temp_time > 500)
 		{
 			timer_sd01_ms = 0;
-//			UARTprintf("SD01:%d\n",temp_time);
 			calculate_drop(temp_time);
 		}
 	}

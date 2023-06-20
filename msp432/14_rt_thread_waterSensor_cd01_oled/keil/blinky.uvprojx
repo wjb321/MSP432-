@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>blinky</TargetName>
+      <TargetName>rt-sensors</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>C:\ti\simplelink_msp432e4_sdk_4_20_00_12\source;C:\ti\simplelink_msp432e4_sdk_4_20_00_12\source\third_party\CMSIS\Include;..\uart;C:\ti\simplelink_msp432e4_sdk_4_20_00_12\source\ti\grlib\lib\keil\m4f;..\OLED;..\IIC;..\timer;..\cd01;..\delay</IncludePath>
+              <IncludePath>C:\ti\simplelink_msp432e4_sdk_4_20_00_12\source;C:\ti\simplelink_msp432e4_sdk_4_20_00_12\source\third_party\CMSIS\Include;..\uart;C:\ti\simplelink_msp432e4_sdk_4_20_00_12\source\ti\grlib\lib\keil\m4f;..\OLED;..\IIC;..\timer;..\cd01;..\delay;..\led</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -486,6 +486,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>led</GroupName>
+          <Files>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\led\led.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>
@@ -504,25 +514,25 @@
       <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.6.0" condition="ARMv6_7_8-M Device">
         <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
         <targetInfos>
-          <targetInfo name="blinky"/>
+          <targetInfo name="rt-sensors"/>
         </targetInfos>
       </component>
       <component Cbundle="ARM Compiler" Cclass="Compiler" Cgroup="I/O" Csub="STDERR" Cvariant="ITM" Cvendor="Keil" Cversion="1.2.0" condition="ARMCC Cortex-M with ITM">
         <package name="ARM_Compiler" schemaVersion="1.7.7" url="https://www.keil.com/pack/" vendor="Keil" version="1.7.2"/>
         <targetInfos>
-          <targetInfo name="blinky"/>
+          <targetInfo name="rt-sensors"/>
         </targetInfos>
       </component>
       <component Cbundle="RT-Thread" Cclass="RTOS" Cgroup="kernel" Cvendor="RealThread" Cversion="3.1.5" condition="CMSIS Core with RTOS">
         <package name="RT-Thread" schemaVersion="1.4" url="https://www.rt-thread.org/download/mdk/" vendor="RealThread" version="3.1.5"/>
         <targetInfos>
-          <targetInfo name="blinky"/>
+          <targetInfo name="rt-sensors"/>
         </targetInfos>
       </component>
       <component Cbundle="RT-Thread" Cclass="RTOS" Cgroup="shell" Cvendor="RealThread" Cversion="3.1.5" condition="shell">
         <package name="RT-Thread" schemaVersion="1.4" url="https://www.rt-thread.org/download/mdk/" vendor="RealThread" version="3.1.5"/>
         <targetInfos>
-          <targetInfo name="blinky"/>
+          <targetInfo name="rt-sensors"/>
         </targetInfos>
       </component>
     </components>
@@ -580,7 +590,7 @@
         <component Cbundle="RT-Thread" Cclass="RTOS" Cgroup="kernel" Cvendor="RealThread" Cversion="3.1.5" condition="CMSIS Core with RTOS"/>
         <package name="RT-Thread" schemaVersion="1.4" url="https://www.rt-thread.org/download/mdk/" vendor="RealThread" version="3.1.5"/>
         <targetInfos>
-          <targetInfo name="blinky"/>
+          <targetInfo name="rt-sensors"/>
         </targetInfos>
       </file>
       <file attr="config" category="header" name="components\finsh\finsh_config.h" version="3.1.5">
@@ -588,7 +598,7 @@
         <component Cbundle="RT-Thread" Cclass="RTOS" Cgroup="shell" Cvendor="RealThread" Cversion="3.1.5" condition="shell"/>
         <package name="RT-Thread" schemaVersion="1.4" url="https://www.rt-thread.org/download/mdk/" vendor="RealThread" version="3.1.5"/>
         <targetInfos>
-          <targetInfo name="blinky"/>
+          <targetInfo name="rt-sensors"/>
         </targetInfos>
       </file>
       <file attr="config" category="source" name="components\finsh\finsh_port.c" version="3.1.5">
@@ -596,7 +606,7 @@
         <component Cbundle="RT-Thread" Cclass="RTOS" Cgroup="shell" Cvendor="RealThread" Cversion="3.1.5" condition="shell"/>
         <package name="RT-Thread" schemaVersion="1.4" url="https://www.rt-thread.org/download/mdk/" vendor="RealThread" version="3.1.5"/>
         <targetInfos>
-          <targetInfo name="blinky"/>
+          <targetInfo name="rt-sensors"/>
         </targetInfos>
       </file>
       <file attr="config" category="header" name="bsp\_template\rtconfig.h" version="3.1.5">
@@ -604,7 +614,7 @@
         <component Cbundle="RT-Thread" Cclass="RTOS" Cgroup="kernel" Cvendor="RealThread" Cversion="3.1.5" condition="CMSIS Core with RTOS"/>
         <package name="RT-Thread" schemaVersion="1.4" url="https://www.rt-thread.org/download/mdk/" vendor="RealThread" version="3.1.5"/>
         <targetInfos>
-          <targetInfo name="blinky"/>
+          <targetInfo name="rt-sensors"/>
         </targetInfos>
       </file>
     </files>

@@ -1,6 +1,5 @@
-#include <ti/devices/msp432e4/driverlib/driverlib.h>
-
 /* Standard Includes */
+#include "ti/devices/msp432e4/driverlib/driverlib.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -8,12 +7,14 @@
 #include "msp432e401y.h"
 #include <rthw.h>
 #include <rtthread.h>
-#include "ti/devices/msp432e4/driverlib/driverlib.h"
 #include "uartstdio.h"
 #include "oled.h"
 #include "iic.h"
 #include "test.h"
 #include "gui.h"
+#include "sd01.h"
+#include "led.h"
+#include "uart.h"
 //#include "driverlib.h"
 uint32_t getSystemClock;
 uint32_t duty_cycle = 0;
@@ -169,8 +170,8 @@ static void WaterSensor_thread_entry(void* parameter)
 
 static void OLED_thread_entry(void* parameter)
 {
-   uart_init(getSystemClock);
-	 PWM_configure();
+  uart_init(getSystemClock);
+	PWM_configure();
 	OLED_Init();
   OLED_Clear(0); 
   for(;;)
@@ -189,19 +190,8 @@ static void OLED_thread_entry(void* parameter)
         }
       MAP_PWMPulseWidthSet(PWM0_BASE, PWM_OUT_0, duty_cycle);
       MAP_PWMPulseWidthSet(PWM0_BASE, PWM_OUT_1, duty_cycle);
-     // TEST_MainPage();         //主界面显示测试
-		 // OLED_Clear(0); 
-		  //Test_Color();            //刷屏测试
-			//TEST_Number_Character() ;
-				//TEST_Chinese();
-				//TEST_English();
-				TEST_Menu2();
-				//GUI_ShowString(0,5,"6x8:abcdefghijklmnopqrstuvwxyz",8,1);
-				//GUI_ShowString(15,16,"Water_deep:",10,15);
-				//GUI_ShowNum(30,16,getADCValue[0],10,15,1);
-		  //TEST_BMP();
+			TEST_Menu2(); // 这里显示所有传感器信息状态
 			OLED_Display_On();
-      //MAP_SysCtlDelay(getSystemClock / 30);
 			rt_thread_delay(600);
     }
 }
@@ -210,40 +200,24 @@ static void OLED_thread_entry(void* parameter)
 static void sd01_thread_entry(void* parameter)
 {
    uart1_init(getSystemClock);
+	 uart0_init(115200);										//串口0初始化
+	 uart2_init(115200);										//串口2初始化
 	 PWM_configure();
 	OLED_Init();
   OLED_Clear(0); 
+	sd01_init(); 
   for(;;)
     {
-      //LED1_Blinky();
-      duty_cycle += increment;
-      if (duty_cycle >= 12000)
-        {
-          duty_cycle = 12000;
-          increment = -2000;
-        }
-      else if (duty_cycle <= 0)
-        {
-          duty_cycle = 0;
-          increment = 2000;
-        }
-      MAP_PWMPulseWidthSet(PWM0_BASE, PWM_OUT_0, duty_cycle);
-      MAP_PWMPulseWidthSet(PWM0_BASE, PWM_OUT_1, duty_cycle);
-     // TEST_MainPage();         //主界面显示测试
-		 // OLED_Clear(0); 
-		  //Test_Color();            //刷屏测试
-			//TEST_Number_Character() ;
-				//TEST_Chinese();
-				//TEST_English();
-				TEST_Menu2();
-				//GUI_ShowString(0,5,"6x8:abcdefghijklmnopqrstuvwxyz",8,1);
-				//GUI_ShowString(15,16,"Water_deep:",10,15);
-				//GUI_ShowNum(30,16,getADCValue[0],10,15,1);
-		  //TEST_BMP();
-			OLED_Display_On();
-      //MAP_SysCtlDelay(getSystemClock / 30);
-				rt_kprintf("this is uart1\n");
-			rt_thread_delay(600);
+    if(warn_status==1)									//警告状态
+		{
+			LED4_ON;													//LED4点亮,表示异常
+			u2_printf("t=%dms,s=%fml/min,c=%d,warning\r\n", time_drop, speed_drop, count_drop);//发送带警告的数据
+		}
+		else
+		{
+			LED4_OFF;													//LED4关闭,表示正常
+			u2_printf("t=%dms,s=%fml/min,c=%d\r\n", time_drop, speed_drop, count_drop);//发送数据
+		}
     }
 }
 

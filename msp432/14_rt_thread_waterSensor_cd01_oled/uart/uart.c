@@ -87,3 +87,5 @@ void u2_printf(char* fmt,...)
 	uart2_send_string(USART2_TX_BUF);
 }
 
+
+

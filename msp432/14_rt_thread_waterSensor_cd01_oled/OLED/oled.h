@@ -79,4 +79,16 @@ void OLED_Set_Pixel(unsigned char x, unsigned char y,unsigned char color);
 void OLED_Display(void);
 void OLED_Clear(unsigned dat);  
 void delay_ms(unsigned int ms);
+
+
+ 
+  							   		   
+void OLED_DrawPoint(unsigned char x,unsigned char y,unsigned char t);
+void OLED_Fill(unsigned char x1,unsigned char y1,unsigned char x2,unsigned char y2,unsigned char dot);
+void OLED_ShowChar(unsigned char x,unsigned char y,unsigned char chr);
+void OLED_ShowNum(unsigned char x,unsigned char y,unsigned int num,unsigned char len,unsigned char size2);
+void OLED_ShowString(unsigned char x,unsigned char y, unsigned char *p);	 
+//void OLED_ShowENCN(unsigned char x,unsigned char y,char *chr);
+void OLED_DrawBMP(unsigned char x0, unsigned char y0,unsigned char x1, unsigned char y1,unsigned char BMP[]);
+void OLED_printf(unsigned char x,unsigned char y,char* fmt,...);
 #endif

@@ -47,7 +47,9 @@
 #include "string.h" 	 
 #include "delay.h"
 #include "iic.h"
-
+#include <stdarg.h>
+#include <stdio.h>	
+//#include "oledfont.h"
 
 //void delay_ms(unsigned int ms)
 //{
@@ -71,7 +73,8 @@
 //[4]0 1 2 3 ... 127 (32~39)行	
 //[5]0 1 2 3 ... 127 (40~47)行	
 //[6]0 1 2 3 ... 127 (48~55)行	
-//[7]0 1 2 3 ... 127 (56~63)行			   
+//[7]0 1 2 3 ... 127 (56~63)行			  
+unsigned int N_CN;
 
 //数组每个bit存储OLED每个像素点的颜色值(1-亮(白色),0-灭(黑色))
 //每个数组元素表示1列8个像素点，一共128列
@@ -284,6 +287,21 @@ void OLED_Init_GPIO(void)
 {
 
 }
+
+
+
+
+__align(8) char OLED_BUF[64]; 	//显示缓冲,最大64字节
+void OLED_printf(unsigned char x,unsigned char y,char* fmt,...)
+{
+	va_list ap;
+	va_start(ap,fmt);
+	vsprintf((char*)OLED_BUF,fmt,ap);
+	va_end(ap);
+	GUI_ShowCHinese(36,32,16,"ok,chinese",1);
+
+}
+
 
 /*******************************************************************
  * @name       :void OLED_Init(void)
